@@ -7,7 +7,7 @@ public class StringLesson {
 //        до 9 Java строки хранятся как масив char
         char charVar = 'e';
         String someStr = "jjd";
-        char[] chars = {'j','j','d'}; // кодировка utf-16 символ занимает 2 байта
+        char[] chars = {'j', 'j', 'd'}; // кодировка utf-16 символ занимает 2 байта
 //       начиная с 9 Java строки хранятся как масив byte в кодировке utf-16 или latin-1
         String string = "Some string";
         String string4 = "Some string"; // пул строк общий хеш
@@ -28,10 +28,10 @@ public class StringLesson {
         str1 = str1 + str2;
 //        System.out.println(str1.equals(str2));
         str2 = str2.concat(str3)
-        .concat("Hello")
-        .concat("STR");
+                .concat("Hello")
+                .concat("STR");
         System.out.println(str2);
-        str3 = String.join("::", str1,str2,str3);
+        str3 = String.join("::", str1, str2, str3);
         System.out.println(str3);
         str1 = "Строка ";
         for (int i = 0; i < 10; i++) {
@@ -52,15 +52,15 @@ public class StringLesson {
         str1 = sb.toString();
         System.out.println(str1);
 
-        char[] charsArr  = {'q', 'w', 'e'};
+        char[] charsArr = {'q', 'w', 'e'};
         String charStr = new String(charsArr);
         byte[] bytes = charStr.getBytes();
         System.out.println(charStr);
         System.out.println(Arrays.toString(bytes));
         charStr = new String(bytes);
         System.out.println(charStr);
-str1 = "Java";
-str2 = "java";
+        str1 = "Java";
+        str2 = "java";
         System.out.println(str1.equals(str2));
         System.out.println(str1.equalsIgnoreCase(str2));
 
@@ -76,5 +76,11 @@ str2 = "java";
         str1 = "Java Junior";
         String[] strings = str1.split("\\s");
         System.out.println(Arrays.toString(strings));
+
+        String srt1 = "string";
+        String srt2 = new String("String string");
+        String srt3 = "str";
+        System.out.println(Arrays.toString(str1.getBytes()));
+        System.out.println(Arrays.toString(str2.getBytes()));
     }
 }
