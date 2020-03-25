@@ -50,6 +50,16 @@ public class Task5 {
 //        5. Даны два слова и словарь (массив слов). Необходимо найти алгоритм превращения в другое, меняя за один шаг одну букву, причем каждое новое слово должно быть в словаре (массиве слов).
 //                Например,даны слова "hit" и "cog" и словарь(массив слов) ["hot", "dot", "dog", "log", "lot"].
 //        Один из вариантов цепочки: "hit"->"hot"->"dot"->"dog"->"cog".
+        String[] strings2 = {"hot", "dot", "dog", "log", "lot"};
+        Arrays.sort(strings2);
+        srt1 = "hit";
+        srt2 = "cog";
+        while (!srt1.equals(srt2)){}
+        System.out.println(Arrays.toString(strings2));
+        for (int i = 0; i < strings2.length ; i++) {
+            System.out.println(strings2[i]);
+            System.out.println(Arrays.toString(strings2[i].getBytes()));
+        }
 
 //        6. Пользователь вводит названия городов через пробел. Вы их присваиваете переменной. Переставьте названия так, чтобы они были упорядочены по алфавиту.
 //

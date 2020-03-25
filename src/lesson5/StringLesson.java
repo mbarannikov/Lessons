@@ -59,7 +59,7 @@ public class StringLesson {
         System.out.println(Arrays.toString(bytes));
         charStr = new String(bytes);
         System.out.println(charStr);
-        str1 = "Java";
+        str1 = "jbva";
         str2 = "java";
         System.out.println(str1.equals(str2));
         System.out.println(str1.equalsIgnoreCase(str2));
