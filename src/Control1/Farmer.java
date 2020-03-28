@@ -1,4 +1,4 @@
-package Control;
+package Control1;
 //На Ферме есть фермер, домашние животные (и птицы). Максимальное количество животных (и птиц) на ферме - 10.
 //
 //        Фермер живет за счет ресурсов, собираемых с животных. Изначально фермер создается с 5 единицами ресурсов.
@@ -8,38 +8,38 @@ package Control;
 //        3. прогнать дикое животное, которое пришло на ферму
 //        4. кормить домашнее животное
 public class Farmer {
+    private String name;
+    private final int maxHealth;
+    private int health;
+
+    public Farmer(String name) {
+        this.name = name;
+        this.maxHealth = 5;
+        this.health = maxHealth;
+    }
+
     public int getHealth() {
         return health;
     }
 
-    String name;
-    int health;
-    public void kickout(WildAnimal animal){
-        if(animal.farmAttackCount<3){
-            animal.farmAttackCount++;
-            System.out.println("Фермер прогнал"+animal.name);
-        }
-
+    public int getMaxHealth() {
+        return maxHealth;
     }
-    public void fead(FarmAnimal[] animals){
-        for (int i = 0; i < animals.length; i++) {
-            if (animals[i].getHealth() < animals[i].getMaxHealth()&&animals[i].isOnFarm()) {
-                animals[i].health++;
-                System.out.println("Фермер кормит животное"+animals[i].getName());
-            }
-        }
+
+    public void decrHealth(int cnt) {
+        this.health -= cnt ;
     }
 
     public void takeRes(FarmAnimal[] animals) {
         boolean flag = false;
         for (int i = 0; i < animals.length; i++) {
             if ((animals[i] instanceof CanGiveRes)&&animals[i].isOnFarm()) {
-                    while (getHealth() < 5 && animals[i].getRes() > 0) {
-                        this.health++;
-                        animals[i].res--;
+                    while (getHealth() < getMaxHealth() && animals[i].getRes() > 0) {
+                        health++;
+                        animals[i].decRes(1);
                         flag = true;
                 }
-                    if(flag){System.out.println("Фермер собрал ресурс у"+animals[i].getName());}
+                    if(flag){System.out.println("Фермер собрал ресурс у "+animals[i].getName());}
             }
         }
     }
@@ -48,9 +48,9 @@ public class Farmer {
         boolean flag = false;
         for (int i = 0; i < animals.length; i++) {
             if ((animals[i] instanceof CanGiveMeat)&&animals[i].isOnFarm()) {
-                while (getHealth() < 5 && animals[i].getWeight() > 0) {
-                    this.health++;
-                    animals[i].weight--;
+                while (health< maxHealth && animals[i].getWeight() > 0) {
+                    health++;
+                    animals[i].decWeight(1);
                     flag = true;
                 }
                 if(flag) {
@@ -61,4 +61,11 @@ public class Farmer {
         }
     }
 
+    public void fead(FarmAnimal[] animals) {
+        for (int i = 0; i < animals.length; i++) {
+            if (animals[i].isOnFarm()){
+                animals[i].eat();
+            }
+        }
+    }
 }

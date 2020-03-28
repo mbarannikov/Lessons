@@ -1,6 +1,4 @@
-package Control;
-
-import ru.ifmo.base.lesson7.BattleUnit;
+package Control1;
 
 public interface CanAttack {
     void attack(FarmAnimal fa);

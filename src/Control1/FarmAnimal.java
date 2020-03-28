@@ -1,4 +1,4 @@
-package Control;
+package Control1;
 //Домашние животные: Корова, Кот, Курица, Кролик
 //        обладают следующими характеристиками:
 //        имя, вес, скорость, здоровье, количество ресурсов (у каждого свое и 0, если животное на дает ресурс)
@@ -9,28 +9,21 @@ package Control;
 //        Животные восполняют здоровье во время кормления.
 
 public class FarmAnimal extends Animal implements CanGiveMeat {
-    int health;
-    int maxHealth;
-    int res;
-    boolean onFarm;
-
-    public boolean isOnFarm() {
-        return onFarm;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
+    private int health;
+    private int maxHealth;
+    private int res;
+    private boolean onFarm;
 
     public FarmAnimal(String name, int weight, int speed, int health, int res) {
         super(name, weight, speed);
         this.health = health;
         this.res = res;
         this.maxHealth = health;
+        setOnFarm(true);
+    }
+
+    public boolean isOnFarm() {
+        return onFarm;
     }
 
     public void setOnFarm(boolean onFarm) {
@@ -39,6 +32,26 @@ public class FarmAnimal extends Animal implements CanGiveMeat {
 
     public int getRes() {
         return res;
+    }
+
+    public void decRes(int cnt) {
+        if(res>0)this.res -= cnt;
+    }
+
+    public void eat() {
+        if(health<maxHealth) {
+            health++;
+            System.out.println("Животное "+getName()+" покормили. Осталось здоровья "+health);
+        }
+    }
+
+    public void attacked(int strength) {
+        health-=strength;
+        if (health<0){
+            setOnFarm(false);
+            System.out.println("Животное "+getName()+" съели");
+        }
+
     }
 
 

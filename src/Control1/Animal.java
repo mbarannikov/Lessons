@@ -1,10 +1,10 @@
-package Control;
+package Control1;
 
 
 abstract public class Animal {
-    String name;
-    int weight;
-    int speed;
+    private String name;
+    private int weight;
+    private int speed;
 
     public Animal(String name, int weight, int speed) {
         this.name = name;
@@ -16,7 +16,15 @@ abstract public class Animal {
         return weight;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void decWeight(int cnt) {
+        if(weight>0)this.weight -= cnt;
     }
 }
