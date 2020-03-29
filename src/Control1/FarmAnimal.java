@@ -8,7 +8,7 @@ package Control1;
 //        Домашнее животное может восполнять здоровье (+1, но не больше изначального).
 //        Животные восполняют здоровье во время кормления.
 
-public class FarmAnimal extends Animal implements CanGiveMeat {
+public class FarmAnimal extends Animal{
     private int health;
     private int maxHealth;
     private int res;
@@ -47,12 +47,20 @@ public class FarmAnimal extends Animal implements CanGiveMeat {
 
     public void attacked(int strength) {
         health-=strength;
-        if (health<0){
+        if (health<=0){
             setOnFarm(false);
             System.out.println("Животное "+getName()+" съели");
         }
 
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() +"FarmAnimal{" +
+                "health=" + health +
+                ", maxHealth=" + maxHealth +
+                ", res=" + res +
+                ", onFarm=" + onFarm +
+                '}';
+    }
 }

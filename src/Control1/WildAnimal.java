@@ -28,7 +28,7 @@ public class WildAnimal extends Animal implements CanAttack{
     public void kicked(){
         if(farmAttackCount<3){
             farmAttackCount++;
-            System.out.println("Фермер прогнал "+getName());
+            System.out.println("Фермер прогнал "+getName()+" число попыток "+farmAttackCount);
         }
     }
 
@@ -36,6 +36,7 @@ public class WildAnimal extends Animal implements CanAttack{
     public void attack(FarmAnimal fa) {
         if (farmAttackCount<4&&fa.getSpeed() < getSpeed()&&fa.isOnFarm()){
             fa.attacked(strength);
+            System.out.println("Хищник "+getName()+" атаковал "+fa.getName());
         }else System.out.println("Хищник "+getName()+" не смог атаковать. Попыток "+farmAttackCount+"Скорость хищника "+getSpeed()+"Скорость домашнего животного "+fa.getSpeed());
     }
 
@@ -45,12 +46,19 @@ public class WildAnimal extends Animal implements CanAttack{
         else {
             for (int i = 0; i < animals.length; i++) {
                 if (i == randAttack) continue;
-                if (animals[i].isOnFarm()) attack(animals[i]);
+                if (animals[i].isOnFarm()) {
+                    attack(animals[i]);
+                    return;
+                }
             }
         }
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return super.toString() +"WildAnimal{" +
+                "strength=" + strength +
+                ", farmAttackCount=" + farmAttackCount +
+                '}';
+    }
 }

@@ -14,16 +14,16 @@ public class Main {
         Fox fox = new Fox("Рыжая",(int)(Math.random()*2+2),(int)(Math.random()*5+5), (int)(Math.random()*3+3) );
         Bear bear = new Bear("Косолапый",(int)(Math.random()*5+5),(int)(Math.random()*3+3), (int)(Math.random()*5+5) );
         Farmer farmer = new Farmer("Петрович");
-
         Farm farm = new Farm("Моя ферма",farmer);
+        Nature nature = new Nature("Лес");
 
         farm.addFarmAnimal(cow);
         farm.addFarmAnimal(rabbit);
         farm.addFarmAnimal(cat);
         farm.addFarmAnimal(chicken);
-        farm.addWildAnimal(wolf);
-        farm.addWildAnimal(fox);
-        farm.addWildAnimal(bear);
-        farm.dayOnFarm();
+        nature.addWildAnimal(wolf);
+        nature.addWildAnimal(fox);
+        nature.addWildAnimal(bear);
+        farm.dayOnFarm(nature);
     }
 }

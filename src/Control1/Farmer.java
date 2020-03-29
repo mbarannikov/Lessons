@@ -31,15 +31,13 @@ public class Farmer {
     }
 
     public void takeRes(FarmAnimal[] animals) {
-        boolean flag = false;
         for (int i = 0; i < animals.length; i++) {
             if ((animals[i] instanceof CanGiveRes)&&animals[i].isOnFarm()) {
                     while (getHealth() < getMaxHealth() && animals[i].getRes() > 0) {
                         health++;
                         animals[i].decRes(1);
-                        flag = true;
+                        System.out.println("Фермер собрал ресурс у "+animals[i].getName());
                 }
-                    if(flag){System.out.println("Фермер собрал ресурс у "+animals[i].getName());}
             }
         }
     }
@@ -56,6 +54,7 @@ public class Farmer {
                 if(flag) {
                     animals[i].setOnFarm(false);
                     System.out.println("Фермер съел " + animals[i].getName());
+                    flag = false;
                 }
             }
         }

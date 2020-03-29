@@ -27,4 +27,14 @@ abstract public class Animal {
     public void decWeight(int cnt) {
         if(weight>0)this.weight -= cnt;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", weight=" + weight +
+                ", speed=" + speed +
+                '}';
+    }
+
 }
