@@ -1,4 +1,4 @@
-package Fintess_not_finished;
+package Fintess;
 
 import java.time.LocalDate;
 

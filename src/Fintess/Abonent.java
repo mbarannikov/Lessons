@@ -1,4 +1,4 @@
-package Fintess_not_finished;
+package Fintess;
 
 //Задача «Фитнес»
 //В фитнес клубе есть три типа абонентов:
@@ -46,6 +46,7 @@ public abstract class Abonent {
     private LocalDate finishDate;
     private Owner owner;
     private String currentZone; // null - ничего, ZAL - тренажерный зал, BAS - бассейн, GRP - групповые занятия
+    private boolean pass;
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
@@ -62,9 +63,36 @@ public abstract class Abonent {
         this.currentZone = currentZone;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getFinishDate() {
+        return finishDate;
+    }
+
+    public String getCurrentZone() {
+        return currentZone;
+    }
+
     public Abonent(LocalDate startDate, LocalDate finishDate, Owner owner) {
         this.startDate = startDate;
         setFinishDate(finishDate);
         this.owner = owner;
+        pass = true;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public boolean isPass() {
+        return pass;
+    }
+    public void disablePass() {
+        pass = false;
+    }
+    public void enablePass() {
+        pass = true;
     }
 }

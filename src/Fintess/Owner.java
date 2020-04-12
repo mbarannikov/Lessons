@@ -1,8 +1,8 @@
-package Fintess_not_finished;
+package Fintess;
 
 import java.time.LocalDate;
 
- public class Owner {
+ public class Owner implements Comparable<Owner>{
     private String name;
     private String surname;
     private LocalDate birthDate;
@@ -38,4 +38,23 @@ import java.time.LocalDate;
             setBirthDate(birthDate);
         }
     }
-}
+
+     @Override
+     public String toString() {
+         return "Owner{" +
+                 "name='" + name + '\'' +
+                 ", surname='" + surname +
+                 '}';
+     }
+
+     @Override
+     public int compareTo(Owner o) {
+         int compare;
+        if (o == null) compare = -1;
+        else {
+            compare = getSurname().compareTo(o.getSurname());
+            if (compare == 0) compare = getName().compareTo(o.getName());
+        }
+        return compare;
+     }
+ }

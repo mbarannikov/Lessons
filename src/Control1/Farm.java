@@ -18,26 +18,29 @@ public class Farm {
         this.farmer = farmer;
     }
 
-    public void addFarmAnimal(FarmAnimal fa){
+    public void addFarmAnimal(FarmAnimal fa) {
         for (int i = 0; i < farmAnimals.length; i++) {
-            if (farmAnimals[i] == null){farmAnimals[i] = fa;return;}
+            if (farmAnimals[i] == null) {
+                farmAnimals[i] = fa;
+                return;
+            }
         }
     }
 
-    public void dayOnFarm(Nature nature){
-        int i=1;
+    public void dayOnFarm(Nature nature) {
+        int i = 1;
         WildAnimal[] wildAnimals = nature.getWildAnimals();
-            for (FarmAnimal fa: farmAnimals
-            ) {
-                System.out.println(fa.toString());
-            }
-            for (WildAnimal wa: wildAnimals
-                 ) {
-                System.out.println(wa.toString());
-            }
-        while (farmer.getHealth()>0) {
-            System.out.println("Наступил "+i+" день");
-            System.out.println("Здоровье фермера "+farmer.getHealth());
+        for (FarmAnimal fa : farmAnimals
+        ) {
+            System.out.println(fa.toString());
+        }
+        for (WildAnimal wa : wildAnimals
+        ) {
+            System.out.println(wa.toString());
+        }
+        while (farmer.getHealth() > 0) {
+            System.out.println("Наступил " + i + " день");
+            System.out.println("Здоровье фермера " + farmer.getHealth());
             int randWild = (int) (Math.random() * wildAnimals.length);
             int randWildKick = (int) (Math.random() * wildAnimals.length);
             int randFarmAttack = (int) (Math.random() * farmAnimals.length);
@@ -49,9 +52,9 @@ public class Farm {
             farmer.takeRes(farmAnimals);
             farmer.takeMeat(farmAnimals);
             i++;
-            if(i>100)return; // если ошибка
+            if (i > 100) return; // если ошибка
         }
 
-            System.out.println("Фермеру нечего есть. Игра закончилась.");
-        }
+        System.out.println("Фермеру нечего есть. Игра закончилась.");
+    }
 }
