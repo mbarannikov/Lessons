@@ -1,14 +1,12 @@
-package ru.ifmo.base.timezone;
+package Tasks.timezone;
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Timezone {
+public class Task1 {
 
     public static void main(String[] args) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
