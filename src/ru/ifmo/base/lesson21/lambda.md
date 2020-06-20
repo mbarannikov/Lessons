@@ -1,0 +1,5 @@
+1. [Синтаксис лямбда](Lambda.java)
+2. [Лямбда и внешние переменные](LambdaAndVars.java)
+3. [Функциональные интерфейсы. Predicate и Function](JavaFunctionalInterfaces.java)
+4. [Лямбда и коллекции. Компараторы](LambdaAndCollections.java)
+5. [Лямбда и мапы. Задание на докуметацию](LambdaAndMaps.java)

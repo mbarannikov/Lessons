@@ -1,11 +1,10 @@
 package ru.ifmo.base.lesson14.hw;
 
 import ru.ifmo.base.lesson14.Student;
+import ru.ifmo.base.lesson15.Role;
+import ru.ifmo.base.lesson15.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class MessageTask {
     public static void countEachPriority(List<Message> messageList) {
@@ -14,8 +13,18 @@ public class MessageTask {
         int cntHIGH = 0;
         int cntURGENT = 0;
 
+        EnumMap<MessagePriority, Integer> enumMap = new EnumMap<>(MessagePriority.class);
+
+        for (MessagePriority mp:MessagePriority.values()
+             ) {
+            enumMap.put(mp,0);
+        }
+
         for (Message message : messageList
         ) {
+            MessagePriority key = message.getPriority();
+            if (enumMap.containsKey(key)) enumMap.put(key,enumMap.get(key)+1);
+            else enumMap.put(key,1);
             if (message.getPriority() == MessagePriority.LOW) cntLOW++;
             else if (message.getPriority() == MessagePriority.MEDIUM) cntMEDIUM++;
             else if (message.getPriority() == MessagePriority.HIGH) cntHIGH++;
@@ -25,6 +34,7 @@ public class MessageTask {
         System.out.println("Message Priority.MEDIUM count =" + cntMEDIUM);
         System.out.println("Message Priority.HIGH count =" + cntHIGH);
         System.out.println("Message Priority.URGENT count =" + cntURGENT);
+        System.out.println("enumMap=" + enumMap);
         // TODO:  Подсчитать количество сообщений для каждого приоритела
         //  Ответ в консоль
 
@@ -52,6 +62,7 @@ public class MessageTask {
         // TODO: Подсчитать количество уникальных сообщений
         //  Ответ в консоль
         ArrayList<Message> uniqArrayList = new ArrayList<>(messageList.size());
+        HashSet<Message> MessageHashSet = new HashSet<>(messageList);
         int cnt = 0;
         for (Message message : messageList
         ) {
@@ -61,6 +72,7 @@ public class MessageTask {
             }
         }
         System.out.println("Уникальных сообщений = " + cnt);
+        System.out.println("Уникальных сообщений через HashSet = " + MessageHashSet.size());
     }
 
     public static List<Message> uniqueMessagesInOriginalOrder(List<Message> messageList) {
@@ -68,13 +80,15 @@ public class MessageTask {
         //  в котором они встретились в первоначальном списке
         //  Например, было: [{URGENT, 4}, {HIGH, 9}, {LOW, 3}, {HIGH, 9}]
         //  на выходе: [{URGENT, 4}, {HIGH, 9}, {LOW, 3}]
+        LinkedHashSet<Message> MessageLinkedHashSet = new LinkedHashSet<>(messageList);
         List<Message> uniqArrayList = new ArrayList<>();
         for (Message message : messageList
         ) {
             if (!uniqArrayList.contains(message)) uniqArrayList.add(message);
         }
-        System.out.println("Неповторяющиеся сообщения" + uniqArrayList);
-        return uniqArrayList;
+        System.out.println("Неповторяющиеся сообщения            ArrayList" + uniqArrayList);
+        System.out.println("Неповторяющиеся сообщения MessageLinkedHashSet" + MessageLinkedHashSet);
+        return new ArrayList<>(MessageLinkedHashSet);
     }
 
     public static void removeEach(List<Message> messageList, MessagePriority priority) {
@@ -83,11 +97,9 @@ public class MessageTask {
         System.out.println("Перед удалением = " + messageList);
         Iterator<Message> messageIterator = messageList.listIterator();
         while (messageIterator.hasNext()){
-            if(messageIterator.hasNext()){
                 if(messageIterator.next().getPriority().equals(priority)){
                     messageIterator.remove();
                 }
-            }
         }
         System.out.println("После удаления = " + messageList);
     }
@@ -98,11 +110,9 @@ public class MessageTask {
         System.out.println("Перед удалением = " + messageList);
         Iterator<Message> messageIterator = messageList.listIterator();
         while (messageIterator.hasNext()){
-            if(messageIterator.hasNext()){
                 if(!messageIterator.next().getPriority().equals(priority)){
                     messageIterator.remove();
                 }
-            }
         }
         System.out.println("После удаления = " + messageList);
     }
